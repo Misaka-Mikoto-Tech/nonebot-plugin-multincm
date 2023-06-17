@@ -271,25 +271,24 @@ async def get_song_info(song_id, song_type):
 
 cmd_pick_song = on_command(
     "点歌",
-    aliases={"网易云", "wyy"},
     state={"type": "song"},
 )
-cmd_pick_voice = on_command(
-    "电台",
-    aliases={"声音", "网易电台", "wydt", "wydj"},
-    state={"type": "voice"},
-)
+# cmd_pick_voice = on_command(
+#     "电台",
+#     aliases={"声音", "网易电台", "wydt", "wydj"},
+#     state={"type": "voice"},
+# )
 
 
 @cmd_pick_song.handle()
-@cmd_pick_voice.handle()
+# @cmd_pick_voice.handle()
 async def _(matcher: Matcher, arg_msg: Message = CommandArg()):
     if arg_msg.extract_plain_text().strip():
         matcher.set_arg("arg", arg_msg)
 
 
 @cmd_pick_song.got("arg", "请发送搜索内容")
-@cmd_pick_voice.got("arg", "请发送搜索内容")
+# @cmd_pick_voice.got("arg", "请发送搜索内容")
 async def _(matcher: Matcher, state: T_State, arg: str = ArgPlainText("arg")):
     song_type: SongType = state["type"]
     calling = CALLING_MAP[song_type]
@@ -313,7 +312,7 @@ async def _(matcher: Matcher, state: T_State, arg: str = ArgPlainText("arg")):
 
 
 @cmd_pick_song.handle()
-@cmd_pick_voice.handle()
+# @cmd_pick_voice.handle()
 async def _(matcher: Matcher, state: T_State, event: MessageEvent):
     arg = event.get_message().extract_plain_text().strip().lower()
     page: int = state["page"]

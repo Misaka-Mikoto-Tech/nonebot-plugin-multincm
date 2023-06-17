@@ -32,9 +32,9 @@ __plugin_meta__ = PluginMetadata(
         "▶ 点击 Bot 发送的音乐卡片会跳转到音乐直链，可以直接下载\n"
         "▶ 使用需要回复音乐卡片的指令时，如果没有回复，会自动使用你触发发送的最近一个音乐卡片的信息"
     ),
-    homepage="https://github.com/lgc-NB2Dev/nonebot-plugin-multincm",
-    type="application",
+    # homepage="https://github.com/lgc-NB2Dev/nonebot-plugin-multincm",
+    # type="application",
     config=ConfigModel,
-    supported_adapters={"~onebot.v11"},
+    # supported_adapters={"~onebot.v11"},
     extra={"License": "MIT", "Author": "student_2333"},
 )
