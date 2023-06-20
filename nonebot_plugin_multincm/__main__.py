@@ -26,7 +26,7 @@ from nonebot.adapters.onebot.v11 import (
 )
 from nonebot.internal.matcher import Matcher, current_event
 from nonebot.params import ArgPlainText, CommandArg
-from nonebot.rule import Rule
+from nonebot.rule import Rule, to_me
 from nonebot.typing import T_RuleChecker, T_State
 
 from .config import config
@@ -134,6 +134,7 @@ def any_rule(*rules: Union[T_RuleChecker, Rule]) -> Callable[..., Awaitable[bool
 
 
 music_msg_matcher_rule = any_rule(
+    to_me(),
     cache_music_msg_rule,
     msg_or_reply_music_rule,
     chat_last_music_rule,
@@ -271,6 +272,7 @@ async def get_song_info(song_id, song_type):
 
 cmd_pick_song = on_command(
     "点歌",
+    rule=to_me(),
     state={"type": "song"},
 )
 # cmd_pick_voice = on_command(
@@ -351,7 +353,7 @@ cmd_get_song = on_command(
 )
 reg_song_url = on_regex(
     SONG_ID_REGEX,
-    rule=Rule(auto_resolve_rule) & msg_or_reply_music_rule,
+    rule=to_me() & Rule(auto_resolve_rule) & msg_or_reply_music_rule,
     state={"check_reply": False, "tip_user": True},
 )
 
