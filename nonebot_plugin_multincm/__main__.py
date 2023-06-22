@@ -26,7 +26,7 @@ from nonebot.adapters.onebot.v11 import (
 )
 from nonebot.internal.matcher import Matcher, current_event
 from nonebot.params import ArgPlainText, CommandArg, EventToMe
-from nonebot.rule import Rule, ToMeRule
+from nonebot.rule import Rule, to_me
 from nonebot.typing import T_RuleChecker, T_State
 
 from .config import config
