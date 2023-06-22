@@ -25,8 +25,8 @@ from nonebot.adapters.onebot.v11 import (
     MessageSegment,
 )
 from nonebot.internal.matcher import Matcher, current_event
-from nonebot.params import ArgPlainText, CommandArg
-from nonebot.rule import Rule, to_me
+from nonebot.params import ArgPlainText, CommandArg, EventToMe
+from nonebot.rule import Rule, ToMeRule
 from nonebot.typing import T_RuleChecker, T_State
 
 from .config import config
@@ -132,9 +132,12 @@ def any_rule(*rules: Union[T_RuleChecker, Rule]) -> Callable[..., Awaitable[bool
 
     return rule
 
+async def is_to_me_rule(event: MessageEvent, state: T_State) -> bool:
+    return event.is_tome()
+
 
 music_msg_matcher_rule = any_rule(
-    to_me(),
+    is_to_me_rule,
     cache_music_msg_rule,
     msg_or_reply_music_rule,
     chat_last_music_rule,
