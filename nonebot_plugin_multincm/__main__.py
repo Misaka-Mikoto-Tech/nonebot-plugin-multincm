@@ -170,6 +170,7 @@ async def send_music(matcher: Matcher, song: SongInfo):
             {
                 "type": "custom",
                 "subtype": "163",
+                "id": info.id, # icqq 需要id字段
                 "url": info.url,
                 "voice": info.url,
                 "title": format_alias(song.name, song.alia) if is_song else song.name,
@@ -275,6 +276,7 @@ async def get_song_info(song_id, song_type):
 
 cmd_pick_song = on_command(
     "点歌",
+    aliases={"网易云", "wydg"},
     rule=to_me(),
     state={"type": "song"},
 )
