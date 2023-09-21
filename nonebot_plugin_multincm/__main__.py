@@ -184,8 +184,9 @@ async def send_music(matcher: Matcher, song: SongInfo):
     event = cast(MessageEvent, current_event.get())
 
     chat_last_song_cache[get_chat_cache_key(event)] = song_cache
-    if msg_id := ret.get("message_id"):
-        song_msg_id_cache[msg_id] = song_cache
+    if ret:
+        if msg_id := ret.get("message_id"): # TODO icqq 的 message_id 并不唯一，需要用 group_id + seq 作为key
+            song_msg_id_cache[msg_id] = song_cache
 
     await matcher.finish()
 
