@@ -217,12 +217,14 @@ async def send_music(song: SongInfo):
             "title": format_alias(song.name, song.alia) if is_song else song.name,
             "content": format_artists(song.ar) if is_song else song.radio.name,
             "image": song.al.picUrl if is_song else song.coverUrl,
+            "jumpUrl": f"https://music.163.com/{calling}?id={song_id}"
         },
     )
 
     try:
-        ret: Dict[str, Any] = await matcher.send(seg)
+        ret: Optional[Dict[str, Any]] = await matcher.send(seg)
     except Exception as e:
+        ret = None
         logger.warning(f"发送{calling}卡片失败：{e!r}")
         # await finish_with_delete_msg(f"发送{calling}卡片失败")
 
