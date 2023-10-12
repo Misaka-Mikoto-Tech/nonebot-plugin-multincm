@@ -49,7 +49,7 @@ class Voice(BaseSong[VoiceBaseInfo]):
         return None
 
 
-@searcher
+# @searcher
 class VoiceSearcher(BaseSearcher[VoiceSearchResult, VoiceResource, Voice]):
     calling = CALLING
     commands = COMMANDS
