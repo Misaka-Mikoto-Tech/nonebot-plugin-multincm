@@ -16,7 +16,7 @@ from .base import BaseSearcher, BaseSong, searcher, song
 
 CALLING = "歌曲"
 LINK_TYPES = ["song", "url"]
-COMMANDS = ["网易点歌", "网易云"]
+COMMANDS = ["网易点歌", "网易云点歌"]
 
 
 @song
